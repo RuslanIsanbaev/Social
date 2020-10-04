@@ -3,18 +3,27 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@lmui/api": "3.0.40",
+    "@lmui/auth-module": "3.0.40",
+    "@lmui/core-web": "3.0.40",
+    "@lmui/scripts": "3.0.40",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
+    "node-sass": "^4.14.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-player": "2.0.1",
+    "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3"
   },
   "scripts": {
+    "browser:dev": "npm explore @lmui/scripts -- npm run browser:dev -- --env.hot --env.noStrict --env.port=5000 --env.indexTitle='' --env.indexFile=public/index.html --env.copySrc=public #--env.sourceMap=false",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "flow": "flow"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -30,5 +39,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.11.6",
+    "@babel/core": "^7.11.6",
+    "@babel/preset-flow": "^7.10.4"
   }
 }

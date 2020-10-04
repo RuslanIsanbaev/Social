@@ -1,0 +1,14 @@
+.background{
+    background-color: #F2f3f5;
+    padding: 10px;
+}
+
+.imgHeader{
+    width: 100%;
+}
+
+.imgHeaderAvatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 30px;
+}

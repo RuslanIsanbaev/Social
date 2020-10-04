@@ -1,0 +1,23 @@
+.buttonPrimary{
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    padding: 8px 18px;
+    color: #fff;
+    background-color: #464c5c;
+    --translate-distance: 1px;
+    border-radius: 8px;
+}
+
+.buttonPrimary :hover{
+    background-color: #1c212e;
+}
+
+.background{
+    background-color: #F2f3f5;
+    padding: 10px;
+}
+
+.posts{
+    margin-top: 10px;
+}
