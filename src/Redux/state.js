@@ -1,3 +1,8 @@
+const ADD_POST = 'ADD-POST';
+const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
+const ADD_DIALOG = 'ADD-DIALOG';
+const UPDATE_NEW_DIALOG_TEXT = 'UPDATE-NEW-DIALOG-TEXT';
+
 let store = {
     _state: {
         profilePage: {
@@ -47,7 +52,7 @@ let store = {
     },
 
     dispatch(action){
-        if (action.type === 'ADD-POST'){
+        if (action.type === ADD_POST){
             let newPost = {
                 id: 5,
                 message: this._state.profilePage.newPostText,
@@ -56,10 +61,10 @@ let store = {
             this._state.profilePage.posts.push(newPost);
             this._state.profilePage.newPostText = '';
             this._callSubcriber(this._state);
-        } else if (action.type === 'UPDATE-NEW-POST-TEXT'){
+        } else if (action.type === UPDATE_NEW_POST_TEXT){
             this._state.profilePage.newPostText = action.newText;
             this._callSubcriber(this._state);
-        } else if (action.type === 'ADD-DIALOG'){
+        } else if (action.type === ADD_DIALOG){
             let newDialog = {
                 id: 7,
                 message: this._state.dialogsPage.newDialogText,
@@ -67,12 +72,22 @@ let store = {
             this._state.dialogsPage.message.push(newDialog);
             this._state.dialogsPage.newDialogText = '';
             this._callSubcriber(this._state);
-        } else if (action.type === 'UPDATE-NEW-DIALOG-TEXT'){
+        } else if (action.type === UPDATE_NEW_DIALOG_TEXT){
             this._state.dialogsPage.newDialogText = action.newDialog;
             this._callSubcriber(this._state);
         }
     }
 
 }
+
+export const addPostActionCreator = () => ({ type: ADD_POST })
+
+export const updateNewPostTextActionCreator = (text) =>
+    ({ type: UPDATE_NEW_POST_TEXT, newText: text })
+
+export const addDialogActionCreator = () => ({ type: ADD_DIALOG })
+
+export const updateNewDialogTextActionCreator = (text) =>
+    ({ type: UPDATE_NEW_DIALOG_TEXT, newDialog: text })
 
 export default store;

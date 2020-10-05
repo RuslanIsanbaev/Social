@@ -2,6 +2,7 @@ import React from 'react';
 import s from './Dialogs.module.css';
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
+import {addDialogActionCreator, updateNewDialogTextActionCreator} from "../../Redux/state";
 
 const Dialogs = (props) => {
 
@@ -15,13 +16,13 @@ const Dialogs = (props) => {
 
     //обрабатываем добавление поста
     let addDialog = () => {
-        props.dispatch({type: 'ADD-DIALOG'});
+        props.dispatch(addDialogActionCreator());
     }
 
     //обрабатываем изменение textarea
     let onDialogChange = () => {
         let text = newDialogElement.current.value;
-        props.dispatch({type: 'UPDATE-NEW-DIALOG-TEXT', newDialog: text});
+        props.dispatch(updateNewDialogTextActionCreator());
     }
 
     return (
