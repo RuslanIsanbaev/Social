@@ -38,39 +38,41 @@ let store = {
     _callSubcriber()  {
         console.log('callSubcriber change');
     },
+
     getState(){
         return this._state;
     },
-    addPost() {
-        let newPost = {
-            id: 5,
-            message: this._state.profilePage.newPostText,
-            likeCount: 0
-        }
-        this._state.profilePage.posts.push(newPost);
-        this._state.profilePage.newPostText = '';
-        this._callSubcriber(this._state);
-    },
-    updateNewPostText(newText){
-        this._state.profilePage.newPostText = newText;
-        this._callSubcriber(this._state);
-    },
-    addDialog() {
-        let newDialog = {
-            id: 7,
-            message: this._state.dialogsPage.newDialogText,
-        }
-        this._state.dialogsPage.message.push(newDialog);
-        this._state.dialogsPage.newDialogText = '';
-        this._callSubcriber(this._state);
-    },
-    updateNewDialogText(newDialog) {
-        this._state.dialogsPage.newDialogText = newDialog;
-        this._callSubcriber(this._state);
-    },
     subscripe(observer) {
         this._callSubcriber = observer;
+    },
+
+    dispatch(action){
+        if (action.type === 'ADD-POST'){
+            let newPost = {
+                id: 5,
+                message: this._state.profilePage.newPostText,
+                likeCount: 0
+            }
+            this._state.profilePage.posts.push(newPost);
+            this._state.profilePage.newPostText = '';
+            this._callSubcriber(this._state);
+        } else if (action.type === 'UPDATE-NEW-POST-TEXT'){
+            this._state.profilePage.newPostText = action.newText;
+            this._callSubcriber(this._state);
+        } else if (action.type === 'ADD-DIALOG'){
+            let newDialog = {
+                id: 7,
+                message: this._state.dialogsPage.newDialogText,
+            }
+            this._state.dialogsPage.message.push(newDialog);
+            this._state.dialogsPage.newDialogText = '';
+            this._callSubcriber(this._state);
+        } else if (action.type === 'UPDATE-NEW-DIALOG-TEXT'){
+            this._state.dialogsPage.newDialogText = action.newDialog;
+            this._callSubcriber(this._state);
+        }
     }
+
 }
 
 export default store;

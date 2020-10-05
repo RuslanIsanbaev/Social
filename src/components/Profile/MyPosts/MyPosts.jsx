@@ -13,13 +13,13 @@ const MyPosts = (props) => {
 
     //обрабатываем добавление поста
     let addPost = () => {
-        props.addPost();
+        props.dispatch({type: 'ADD-POST'});
     }
 
     //обрабатываем изменение textarea
     let onPostChange = () => {
         let text = newPostElement.current.value;
-        props.updateNewPostText(text);
+        props.dispatch({type: 'UPDATE-NEW-POST-TEXT', newText: text});
     }
 
     return  <div className={s.background}>

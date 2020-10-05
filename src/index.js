@@ -14,10 +14,7 @@ export let RerenderEntireTree = (state) => {
             <BrowserRouter>
                 <App
                     state={state}
-                    addPost={store.addPost.bind(store)}
-                    updateNewPostText={store.updateNewPostText.bind(store)}
-                    addDialog={store.addDialog.bind(store)}
-                    updateNewDialogText={store.updateNewDialogText.bind(store)}
+                    dispatch={store.dispatch.bind(store)}
                 />
             </BrowserRouter>
         </React.StrictMode>,

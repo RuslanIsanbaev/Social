@@ -15,13 +15,13 @@ const Dialogs = (props) => {
 
     //обрабатываем добавление поста
     let addDialog = () => {
-        props.addDialog();
+        props.dispatch({type: 'ADD-DIALOG'});
     }
 
     //обрабатываем изменение textarea
     let onDialogChange = () => {
         let text = newDialogElement.current.value;
-        props.updateNewDialogText(text);
+        props.dispatch({type: 'UPDATE-NEW-DIALOG-TEXT', newDialog: text});
     }
 
     return (
