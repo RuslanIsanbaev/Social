@@ -15,7 +15,8 @@
     "react-dom": "^16.13.1",
     "react-player": "2.0.1",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.3"
+    "react-scripts": "3.4.3",
+    "redux": "^4.0.5"
   },
   "scripts": {
     "browser:dev": "npm explore @lmui/scripts -- npm run browser:dev -- --env.hot --env.noStrict --env.port=5000 --env.indexTitle='' --env.indexFile=public/index.html --env.copySrc=public #--env.sourceMap=false",
