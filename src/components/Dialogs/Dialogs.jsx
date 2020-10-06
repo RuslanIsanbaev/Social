@@ -6,23 +6,23 @@ import {addDialogActionCreator, updateNewDialogTextActionCreator} from "../../Re
 
 const Dialogs = (props) => {
 
-    let DialogsElements = props.dialogsPage.dialogs
-            .map((dialog) => <DialogItem name={dialog.name} id={dialog.id}/>)
+    let state = props.dialogsPage;
 
-    let MessagesElements = props.dialogsPage.messages
-        .map(m => <Message message={m.message} id={m.id}/>)
+    let DialogsElements = state.dialogs.map(d => <DialogItem name={d.name} id={d.id}/>)
+    let MessagesElements = state.messages.map(m => <Message message={m.message} id={m.id}/>)
+    let newDialogText = state.newDialogText;
 
     let newDialogElement = React.createRef();
 
     //обрабатываем добавление поста
     let addDialog = () => {
-        props.dispatch(addDialogActionCreator());
+        props.sendMessage();
     }
 
     //обрабатываем изменение textarea
     let onDialogChange = () => {
         let text = newDialogElement.current.value;
-        props.dispatch(updateNewDialogTextActionCreator(text));
+        props.updateNewDialogText(text);
     }
 
     return (
@@ -36,7 +36,7 @@ const Dialogs = (props) => {
                     <textarea ref={newDialogElement}
                               onChange={onDialogChange}
                               placeholder="Enter your message"
-                              value={props.dialogsPage.newDialogText}></textarea>
+                              value={newDialogText}></textarea>
                 </div>
                 <div>
                     <button onClick={addDialog}>Add message</button>
