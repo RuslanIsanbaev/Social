@@ -1,30 +1,22 @@
 import React from 'react';
-import s from './Dialogs.module.css';
-import DialogItem from "./DialogItem/DialogItem";
-import Message from "./Message/Message";
 import {addDialogActionCreator, updateNewDialogTextActionCreator} from "../../Redux/dialogs-reducer";
 import Dialogs from "./Dialogs";
+import {connect} from "react-redux";
 
-const DialogsContainer = (props) => {
 
-    let state = props.store.getState().dialogsPage;
-
-    //обрабатываем добавление поста
-    let addDialog = () => {
-        props.store.dispatch(addDialogActionCreator());
+const mapStateToProps = (state) => {
+    return{
+        dialogsPage: state.dialogsPage
     }
-
-    //обрабатываем изменение textarea
-    let onDialogChange = (text) => {
-        props.store.dispatch(updateNewDialogTextActionCreator(text));
-    }
-
-    return <Dialogs
-        updateNewDialogText={onDialogChange}
-        sendMessage={addDialog}
-        dialogsPage={state}
-    />
-
 }
+
+const mapDispatchToProps = (dispatch) => {
+    return{
+        updateNewDialogText: (text) => {dispatch(updateNewDialogTextActionCreator(text));},
+        sendMessage: () => {dispatch(addDialogActionCreator());}
+    }
+}
+
+const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs);
 
 export default DialogsContainer;
