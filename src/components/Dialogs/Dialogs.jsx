@@ -3,13 +3,14 @@ import s from './Dialogs.module.css';
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
 import {addDialogActionCreator, updateNewDialogTextActionCreator} from "../../Redux/dialogs-reducer";
+import Post from "../Profile/MyPosts/Post/Post";
 
 const Dialogs = (props) => {
 
     let state = props.dialogsPage;
 
-    let DialogsElements = state.dialogs.map(d => <DialogItem name={d.name} id={d.id}/>)
-    let MessagesElements = state.messages.map(m => <Message message={m.message} id={m.id}/>)
+    let DialogsElements = state.dialogs.map(d => <DialogItem key={d.id} name={d.name} id={d.id}/>)
+    let MessagesElements = state.messages.map(m => <Message key={m.id} message={m.message} id={m.id}/>)
     let newDialogText = state.newDialogText;
 
     let newDialogElement = React.createRef();

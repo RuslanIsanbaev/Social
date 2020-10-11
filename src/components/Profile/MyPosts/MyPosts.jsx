@@ -6,7 +6,7 @@ const MyPosts = (props) => {
 
     //Выводим из state все посты
     let postsElement = props.posts
-        .map(p => <Post message={p.message} likeCount={p.likeCount}/>)
+        .map(p => <Post key={p.id} message={p.message} likeCount={p.likeCount}/>)
 
     //создаём ссылку на объект textarea для отслеживания
     let newPostElement = React.createRef();
