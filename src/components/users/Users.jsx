@@ -3,19 +3,31 @@ import styles from "./users.module.css"
 import * as axios from 'axios';
 import userPhoto from '../../assets/images/no_photo.png'
 
-let Users = (props) => {
+//Классовая компонента
+class Users extends React.Component {
 
-    if (props.users.length === 0) { //проверка что данных до этого не было, чтобы не вызывать постоянный цикл
+    constructor(props) {
+        super(props);
         //запрос на сервер
         axios.get("https://social-network.samuraijs.com/api/1.0/users").then(response => {
-            props.setUsers(response.data.items)
+            this.props.setUsers(response.data.items)
         });
-
     }
 
-    return <div>
-        {
-            props.users.map( u => <div key={u.id}>
+    getUsers = () => {
+        if (this.props.users.length === 0) { //проверка что данных до этого не было, чтобы не вызывать постоянный цикл
+            //запрос на сервер
+            axios.get("https://social-network.samuraijs.com/api/1.0/users").then(response => {
+                this.props.setUsers(response.data.items)
+            });
+        }
+    }
+
+    render() {
+        return <div>
+            <button onClick={this.getUsers}>Get Users</button>
+            {
+                this.props.users.map( u => <div key={u.id}>
                 <span>
                     <div>
                         <img src={
@@ -25,12 +37,12 @@ let Users = (props) => {
                     </div>
                     <div>
                         { u.followed //проверяем, стэйт follow и утанавливаем эго состояние
-                            ? <button onClick={() => { props.unFollow(u.id) }} >Unfollow</button>
-                            : <button onClick={() => { props.follow(u.id) }} >Follow</button> }
+                            ? <button onClick={() => { this.props.unFollow(u.id) }} >Unfollow</button>
+                            : <button onClick={() => { this.props.follow(u.id) }} >Follow</button> }
 
                     </div>
                 </span>
-                <span>
+                    <span>
                     <span>
                         <div>{u.name}</div>
                         <div>{u.status}</div>
@@ -40,9 +52,10 @@ let Users = (props) => {
                         <div>{"u.location.city"}</div>
                     </span>
                 </span>
-            </div>)
-        }
-    </div>
+                </div>)
+            }
+        </div>
+    }
 }
 
 export default Users;

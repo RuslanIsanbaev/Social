@@ -13,7 +13,7 @@ const userReducer = (state = initialState, action) => {
         case FOLLOW:
             return {
                 ...state,
-                users: state.users.map( u =>{
+                users: state.users.map( u => {
                     if (u.id === action.userId){
                         return {...u, followed: true};
                     }
